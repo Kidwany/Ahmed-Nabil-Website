@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "66ca7343889332c2b8ecca11c251430c",
+    "content-hash": "9b87f3541e483418a7a16e28f6a5e343",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -699,6 +699,44 @@
             ],
             "description": "Update helper",
             "time": "2019-07-29T11:03:54+00:00"
+        },
+        {
+            "name": "laracademy/model-generator",
+            "version": "1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laracademy/ModelGenerator.git",
+                "reference": "0ab1934e9700e454de4afecb9ffbc83fcdbe3bfb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laracademy/ModelGenerator/zipball/0ab1934e9700e454de4afecb9ffbc83fcdbe3bfb",
+                "reference": "0ab1934e9700e454de4afecb9ffbc83fcdbe3bfb",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Laracademy\\ModelGenerator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael McMullen",
+                    "email": "michael@laracademy.co"
+                }
+            ],
+            "description": "This package will generate a Laravel Model based on your database table itself, filling in the required fields automatically.",
+            "keywords": [
+                "generators",
+                "laravel"
+            ],
+            "abandoned": "laracademy/generators",
+            "time": "2016-05-24T17:24:50+00:00"
         },
         {
             "name": "laravel/framework",

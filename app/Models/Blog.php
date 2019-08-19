@@ -4,15 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Album extends Model  {
+class Blog extends Model  {
 
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $connection = 'mysql';
-    protected $table = 'album';
+    protected $table = 'blog';
 
     /**
      * Attributes that should be mass-assignable.
@@ -42,9 +41,14 @@ class Album extends Model  {
      */
     protected $dates = [];
 
-    public function created_by()
+    public function blog_ar()
     {
-        return $this->belongsTo(User::class, 'created_by', 'id');
+        return $this->hasOne(\App\Models\Arabic\Blog::class, 'blog_id', 'id');
+    }
+
+    public function blog_en()
+    {
+        return $this->hasOne(\App\Models\English\Blog::class, 'blog_id', 'id');
     }
 
     public function image()
@@ -52,15 +56,10 @@ class Album extends Model  {
         return $this->belongsTo(Image::class, 'image_id', 'id');
     }
 
-
-    public function album_ar()
+    public function createdBy()
     {
-        return $this->hasOne(AlbumArabic::class, 'album_id','id');
+        return $this->belongsTo(User::class, 'created_by', 'id');
     }
 
-    public function album_en()
-    {
-        return $this->hasOne(AlbumEnglish::class, 'album_id','id');
-    }
 
 }

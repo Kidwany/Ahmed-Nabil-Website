@@ -1,25 +1,25 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Album extends Model  {
+class File extends Model  {
 
     /**
      * The database table used by the model.
      *
      * @var string
      */
+    protected $table = 'file';
     protected $connection = 'mysql';
-    protected $table = 'album';
 
     /**
      * Attributes that should be mass-assignable.
      *
      * @var array
      */
-    protected $fillable = ['image_id', 'created_by'];
+    protected $fillable = ['name', 'path'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -40,27 +40,6 @@ class Album extends Model  {
      *
      * @var array
      */
-    protected $dates = [];
-
-    public function created_by()
-    {
-        return $this->belongsTo(User::class, 'created_by', 'id');
-    }
-
-    public function image()
-    {
-        return $this->belongsTo(Image::class, 'image_id', 'id');
-    }
-
-
-    public function album_ar()
-    {
-        return $this->hasOne(AlbumArabic::class, 'album_id','id');
-    }
-
-    public function album_en()
-    {
-        return $this->hasOne(AlbumEnglish::class, 'album_id','id');
-    }
+    protected $dates = ['birth_date'];
 
 }
