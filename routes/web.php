@@ -30,12 +30,26 @@ Route::group(['middleware' => 'auth' ,'namespace' => 'Dashboard'], function () {
 
     /* -- Return Service Page -- */
     Route::resource('/ahmdedNabilAdmin/service', 'ServiceController');
+    Route::get('/ahmdedNabilAdmin/service/{id}/create', 'ServiceController@createSubService');
+    Route::post('/ahmdedNabilAdmin/sub-service/create', 'ServiceController@storeSub');
 
     /* -- Return Client Page -- */
     Route::resource('/ahmdedNabilAdmin/client', 'ClientController');
 
     /* -- Return Testimonial Page -- */
     Route::resource('/ahmdedNabilAdmin/testimonial', 'TestimonialController');
+
+    /* -- Return Team Page -- */
+    Route::resource('/ahmdedNabilAdmin/team', 'TeamController');
+
+    /* -- Return Appointment Page -- */
+    Route::resource('/ahmdedNabilAdmin/appointment', 'AppointmentController');
+
+    /* -- Return Video Page -- */
+    Route::resource('/ahmdedNabilAdmin/video', 'VideoController');
+
+    /* -- Return Album Page -- */
+    Route::resource('/ahmdedNabilAdmin/album', 'AlbumController');
 
     /* -- Return Gallery Page -- */
     Route::resource('/ahmdedNabilAdmin/gallery', 'GalleryController');

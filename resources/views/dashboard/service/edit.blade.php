@@ -42,6 +42,15 @@
                         <!-- form start -->
                         <div class="box-body">
                             <div class="form-group">
+
+                                @if($service->parent_service_id)
+                                    <div class="col-lg-12">
+                                        <label for="exampleInputEmail1"> Main Service</label>
+                                        <input type="text" class="form-control" disabled="disabled" name="main_service" id="exampleInputEmail1" placeholder="Enter Service Title" value="{{$service->parentService->service_en->title}}">
+                                        <p class="help-block">This is The Parent service of the one you will add</p>
+                                    </div>
+                                @endif
+
                                 <div class="col-lg-12">
                                     <label for="exampleInputEmail1"> Title</label>
                                     <input type="text" class="form-control" name="title_en" id="exampleInputEmail1" placeholder="Enter Service Title" value="{{$service->service_en->title}}">
@@ -65,6 +74,13 @@
                                     <input type="file" class="form-control" name="image_id" id="exampleInputEmail1" placeholder="Enter Service text">
                                     <p class="help-block"> Upload Service Image </p>
                                 </div>
+
+                                <div class="col-lg-12">
+                                    <label for="exampleInputEmail1"> Video Url</label>
+                                    <input type="text" class="form-control" name="video_url" id="exampleInputEmail1" placeholder="Enter Service Title" value="{{$service->video_id ? $service->video->url : ''}}">
+                                    <p class="help-block"> Enter Youtube Video Embed Url </p>
+                                </div>
+
 
                             </div>
                         </div>

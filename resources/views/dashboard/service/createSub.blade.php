@@ -16,7 +16,7 @@
     <section class="content-header">
         <h1>
             Services
-            <small>Add Service</small>
+            <small>Add Sub Service</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{adminUrl('/')}}"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -28,10 +28,11 @@
 
     <section class="content">
         @include('dashboard.layouts.messages')
-        <form role="form" action="{{route('service.store')}}" enctype="multipart/form-data" method="post">
+        <form role="form" action="{{adminUrl('sub-service/create')}}" enctype="multipart/form-data" method="post">
             @csrf
             @method('post')
             <input type="hidden" name="created_by">
+            <input type="hidden" value="{{$service->id}}" name="service_id">
             <div class="row">
                 <!-- English Side -->
                 <div class="col-md-6">
@@ -43,6 +44,13 @@
                     <!-- form start -->
                     <div class="box-body">
                         <div class="form-group">
+
+                            <div class="col-lg-12">
+                                <label for="exampleInputEmail1"> Main Service</label>
+                                <input type="text" class="form-control" disabled="disabled" name="main_service" id="exampleInputEmail1" placeholder="Enter Service Title" value="{{$service->service_en->title}}">
+                                <p class="help-block">This is The Parent service of the one you will add</p>
+                            </div>
+
                             <div class="col-lg-12">
                                 <label for="exampleInputEmail1"> Title</label>
                                 <input type="text" class="form-control" name="title_en" id="exampleInputEmail1" placeholder="Enter Service Title" value="{{old('title_en')}}">
@@ -56,7 +64,7 @@
                             </div>
 
                             <div class="col-lg-12">
-                                <label for="exampleInputEmail1"> Slide Description</label>
+                                <label for="exampleInputEmail1"> Service Description</label>
                                 <textarea  class="form-control" name="description_en" id="exampleInputEmail1" placeholder="Enter Service Description" rows="6">{{old('description_en')}}</textarea>
                                 <p class="help-block">Enter Description of Service</p>
                             </div>
@@ -69,7 +77,7 @@
 
                             <div class="col-lg-12">
                                 <label for="exampleInputEmail1"> Video Url</label>
-                                <input type="file" class="form-control" name="video_id" id="exampleInputEmail1" placeholder="Enter Video Url">
+                                <input type="url" class="form-control" name="video_url" id="exampleInputEmail1" placeholder="Enter Service Title" value="{{old('title_en')}}">
                                 <p class="help-block"> Enter Youtube Video Embed Url </p>
                             </div>
 

@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Image;
 use App\Models\Service;
+use App\Models\Video;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 
 class ServiceController extends Controller
@@ -19,7 +21,17 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $services = Service::with('service_en', 'createdBy', 'image')->get();
+        /*$type = Input::get('type');
+        if ($type == 'main')
+        {
+
+        }
+        else if ($type == 'sub')
+        {
+            $services = Service::with('service_en', 'createdBy', 'image')->where('parent_service_id', '!=', null)->get();
+            return view('dashboard.service.subService', compact('services'));
+        }*/
+        $services = Service::with('service_en', 'createdBy', 'image')->where('parent_service_id', null)->get();
         return view('dashboard.service.index', compact('services'));
     }
 
@@ -31,6 +43,86 @@ class ServiceController extends Controller
     public function create()
     {
         return view('dashboard.service.create');
+    }
+
+    public function storeSub(Request $request)
+    {
+        $input = $request->all();
+        $input['created_by'] = Auth::user()->id;
+        $request->validate([
+            'title_en'          => 'bail|required|max:200',
+            'service_id'        => 'bail|required|int|max:200',
+            'video_url'         => 'bail|max:300',
+            'description_en'    => 'bail|required',
+            'slug_en'           => 'bail|required|max:300',
+            'title_ar'          => 'bail|required|max:200',
+            'description_ar'    => 'bail|required',
+            'slug_ar'           => 'bail|required|max:300',
+            'image_id'          => 'bail|required|mimes:jpeg,jpg,png,gif',
+        ], [], [
+            'title_en'          => ' Title in English',
+            'description_en'    => ' Description in English',
+            'slug_en'           => ' Slug in English',
+            'title_ar'          => ' Title in Arabic',
+            'description_ar'    => ' Description in Arabic',
+            'slug_ar'           => ' Slug in Arabic',
+            'image_id'          => ' Image',
+            'video_url'         => ' Video Url'
+        ]);
+
+
+        //Upload Slide Image
+        if ($uploadedFile = $request->file('image_id'))
+        {
+            $fileName = time() . $uploadedFile->getClientOriginalName();
+            $uploadedFile->move('dashboardImages/service', $fileName);
+            $filePath = 'dashboardImages/service/'.$fileName;
+            $image = Image::create(['name' => $fileName, 'path' => $filePath]);
+            $input['image_id'] = $image->id;
+        }
+
+        if (!empty($input['video_url']))
+        {
+            $video = new Video();
+            $video->url = $input['video_url'];
+
+            $service = new Service();
+            $service->image_id = $input['image_id'];
+            $service->created_by = $input['created_by'];
+            $service->video_id = $video->id;
+            $service->parent_service_id = $input['service_id'];
+            $service->save();
+
+            $service->service_ar()->create(['service_id' => $service->id, 'title' => $input['title_ar'], 'description' => $input['description_ar'], 'slug' => $input['slug_ar']]);
+            $service->service_en()->create(['service_id' => $service->id, 'title' => $input['title_en'], 'description' => $input['description_en'], 'slug' => $input['slug_en']]);
+        }
+
+        else
+        {
+            $service = new Service();
+            $service->image_id = $input['image_id'];
+            $service->created_by = $input['created_by'];
+            $service->parent_service_id = $input['service_id'];
+            $service->save();
+
+            $service->service_ar()->create(['service_id' => $service->id, 'title' => $input['title_ar'], 'description' => $input['description_ar'], 'slug' => $input['slug_ar']]);
+            $service->service_en()->create(['service_id' => $service->id, 'title' => $input['title_en'], 'description' => $input['description_en'], 'slug' => $input['slug_en']]);
+        }
+
+
+
+
+        //$service->video()->create(['url' => $input['url']]);
+
+        Session::flash('create', 'Service  Has Been Created Successfully');
+        return redirect(adminUrl('service/'.$input['service_id']));
+    }
+
+
+    public function createSubService($id)
+    {
+        $service = Service::with('image', 'service_en', 'createdBy')->find($id);
+        return view('dashboard.service.createSub', compact('service'));
     }
 
     /**
@@ -92,7 +184,9 @@ class ServiceController extends Controller
      */
     public function show($id)
     {
-        //
+        $mainService =  Service::with('image', 'service_en', 'createdBy')->find($id);
+        $services = Service::with('image', 'service_en', 'createdBy')->where('parent_service_id', $id)->get();
+        return view('dashboard.service.subService', compact('services', 'mainService'));
     }
 
     /**

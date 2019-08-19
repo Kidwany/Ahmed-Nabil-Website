@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Arabic\AlbumArabic;
+use App\Models\English\AlbumEnglish;
 use Illuminate\Database\Eloquent\Model;
 
 class Album extends Model  {
@@ -42,7 +44,7 @@ class Album extends Model  {
      */
     protected $dates = [];
 
-    public function created_by()
+    public function createdBy()
     {
         return $this->belongsTo(User::class, 'created_by', 'id');
     }

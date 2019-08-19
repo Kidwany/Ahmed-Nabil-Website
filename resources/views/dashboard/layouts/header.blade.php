@@ -41,7 +41,7 @@
                         <!-- The user image in the navbar-->
                         <img src="{{assetPath('dashboard/img/logo.png')}}" class="user-image" alt="User Image">
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                        <span class="hidden-xs">Elagi Admin Panel</span>
+                        <span class="hidden-xs">Ahmed Nabil Admin Panel</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->

@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>3elagi - Dashboard  - @yield('title')</title>
+    <title>Ahmed Nabil - Dashboard  - @yield('title')</title>
 
     <!-- ======================= CSS ===================== -->
 
@@ -22,6 +22,7 @@
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect. -->
+    <link rel="stylesheet" href="{{asset('dashboard/css/dataTables.bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{assetPath('dashboard/css/skin-blue.min.css')}}">
     <link rel="stylesheet" href="{{asset('dashboard/css/style_updates.css')}}">
 

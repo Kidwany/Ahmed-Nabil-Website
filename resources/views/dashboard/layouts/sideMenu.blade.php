@@ -7,10 +7,10 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="{{assetPath('dashboard//img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+                <img src="{{assetPath(setting()->image->path)}}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
+                <p>Ahmed Nabil Admin</p>
                 <!-- Status -->
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
@@ -42,12 +42,26 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{adminUrl('service/create')}}"><i class="fa fa-plus"></i> Add Service</a></li>
-                    <li><a href="{{adminUrl('service')}}"><i class="fa fa-edit"></i> Show / Edit Slide</a></li>
+                    <li><a href="{{adminUrl('service')}}"><i class="fa fa-edit"></i> Show / Edit Main Service</a></li>
+                    {{--<li><a href="{{adminUrl('service?type=sub')}}"><i class="fa fa-edit"></i> Show / Edit Sub Service</a></li>--}}
                 </ul>
             </li>
 
 
             <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-calendar"></i>
+                    <span>Appointments</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    {{--<li><a href="{{adminUrl('gallery/create')}}"><i class="fa fa-upload"></i> Upload To Gallery</a></li>--}}
+                    <li><a href="{{adminUrl('appointment')}}"><i class="fa fa-edit"></i> Show / Edit Appointment</a></li>
+                </ul>
+            </li>
+
+
+           {{-- <li class="treeview">
                 <a href="#">
                     <i class="fa fa-file-image-o"></i>
                     <span>Gallery</span>
@@ -56,6 +70,31 @@
                 <ul class="treeview-menu">
                     <li><a href="{{adminUrl('gallery/create')}}"><i class="fa fa-upload"></i> Upload To Gallery</a></li>
                     <li><a href="{{adminUrl('gallery')}}"><i class="fa fa-edit"></i> Show / Edit Gallery</a></li>
+                </ul>
+            </li>--}}
+
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-file-image-o"></i>
+                    <span>Albums</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{adminUrl('album/create')}}"><i class="fa fa-upload"></i> Add Album</a></li>
+                    <li><a href="{{adminUrl('album')}}"><i class="fa fa-edit"></i> Show / Edit Album</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-video-camera"></i>
+                    <span>Video</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{adminUrl('video/create')}}"><i class="fa fa-upload"></i> Add Video</a></li>
+                    <li><a href="{{adminUrl('video')}}"><i class="fa fa-edit"></i> Show / Edit Video</a></li>
                 </ul>
             </li>
 
