@@ -21,7 +21,7 @@ class Album extends Model  {
      *
      * @var array
      */
-    protected $fillable = ['image_id', 'created_by'];
+    protected $fillable = ['image_id', 'created_by', 'type'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -52,6 +52,17 @@ class Album extends Model  {
     public function image()
     {
         return $this->belongsTo(Image::class, 'image_id', 'id');
+    }
+
+    public function videos()
+    {
+        return $this->hasMany(Video::class, 'album_id', 'id');
+    }
+
+
+    public function images()
+    {
+        return $this->hasMany(Image::class, 'album_id', 'id');
     }
 
 

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Arabic\AboutArabic;
+use App\Models\English\AboutEnglish;
 use Illuminate\Database\Eloquent\Model;
 
 class About extends Model  {

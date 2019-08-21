@@ -121,7 +121,7 @@
                                 <div class="col-lg-12">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-whatsapp"></i> Whatsapp</span>
-                                        <input type="url" class="form-control" placeholder="Whatsapp Page URL" name="whatsapp" value="{{$info->whatsapp}}">
+                                        <input type="text" class="form-control" placeholder="Whatsapp Page URL" name="whatsapp" value="{{$info->whatsapp}}">
                                     </div>
                                 </div>
 
@@ -139,6 +139,12 @@
                                     </div>
                                 </div>
 
+                                <div class="col-lg-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-google-plus"></i> Google Plus</span>
+                                        <input type="url" class="form-control" placeholder="Google Plus Page URL" name="google_plus" value="{{$info->google_plus}}">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="box-footer">

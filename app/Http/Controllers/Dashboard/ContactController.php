@@ -32,7 +32,8 @@ class ContactController extends Controller
             'linkedin'      => 'bail|url|nullable|max:191',
             'pintrest'      => 'bail|url|nullable|max:191',
             'behance'       => 'bail|url|nullable|max:191',
-            'whatsapp'      => 'bail|url|nullable|max:191',
+            'google_plus'       => 'bail|url|nullable|max:191',
+            'whatsapp'      => 'bail|nullable|max:191',
         ], [], [
             'email'         => 'Email',
             'phone'         => 'Phone',
@@ -46,6 +47,7 @@ class ContactController extends Controller
             'pintrest'      => 'Pintrest',
             'behance'       => 'Behance',
             'whatsapp'      => 'Whatsapp',
+            'google_plus'   => 'Google Plus',
 
         ]);
 

@@ -24,8 +24,13 @@ class LayoutsServiceProvide extends ServiceProvider
                 'website.blogDetails',
                 'website.service',
                 'website.serviceDetails',
+                'website.reserve',
+                'website.offers',
+                'website.album',
+                'website.albumDetails',
                 'website.video',
                 'website.gallery',
+                'website.team',
             ],
             LayoutsComposer::class
         );

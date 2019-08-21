@@ -15,24 +15,33 @@
     <link rel="icon" type="image/png" href="{{asset('website/images/favicon.png')}}">
 
     @if(app()->getLocale() == 'en')
-        <link rel="stylesheet" href="{{asset('website/css/bootstrap.min.css')}}">
-        <link rel="stylesheet" href="{{asset('website/css/swiper.min.css')}}">
-        <link rel="stylesheet" href="{{asset('website/css/slick.css')}}">
-        <link rel="stylesheet" href="{{asset('website/css/fotorama.css')}}">
-        <link rel="stylesheet" href="{{asset('website/css/lightgallery.css')}}">
-        <link rel="stylesheet" href="{{asset('website/css/aos.css')}}">
-        <link rel="stylesheet" href="{{asset('website/css/featherIcons.css')}}">
-        <link rel="stylesheet" href="{{asset('website/css/lineaer-icons.css')}}">
-        <link rel="stylesheet" href="{{asset('website/css/line-awesome.css')}}">
-        <link rel="stylesheet" href="{{asset('website/css/elegant-icons.css')}}">
-        <link rel="stylesheet" href="{{asset('website/css/icofont.css')}}">
-        <link rel="stylesheet" href="{{asset('website/css/hamburgers.css')}}">
-        <link rel="stylesheet" href="{{asset('website/css/index.css')}}">
+
+        <!-- //for-meta-tags-->
+            <link href="{{assetPath('website/en/css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all">
+            <link href="{{assetPath('website/en/css/owl.carousel.min.css')}}" rel="stylesheet" type="text/css" media="all">
+            <link href="{{assetPath('website/en/css/owl.theme.default.min.css')}}" rel="stylesheet" type="text/css" media="all">
+
+            <link href="{{assetPath('website/en/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" media="all">
+            <link href="{{assetPath('website/en/css/style.css')}}" rel="stylesheet" type="text/css" media="all">
+            <!-- font-awesome icons -->
+            <link href="{{assetPath('website/en/css/font-awesome.css')}}" rel="stylesheet">
+            <!-- //font-awesome icons -->
 
     @endif
 
     @if(app()->getLocale() == 'ar')
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <!-- //for-meta-tags-->
+        <link href="{{assetPath('website/ar/css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all">
+        <link href="{{assetPath('website/ar/css/owl.carousel.min.css')}}" rel="stylesheet" type="text/css" media="all">
+        <link href="{{assetPath('website/ar/css/owl.theme.default.min.css')}}" rel="stylesheet" type="text/css" media="all">
 
+        <link href="{{assetPath('website/ar/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" media="all">
+        <link rel="stylesheet" href="{{assetPath('website/ar/css/bootstrap-rtl.css')}}">
+
+        <link href="{{assetPath('website/ar/css/style.css')}}" rel="stylesheet" type="text/css" media="all">
+        <!-- font-awesome icons -->
+        <link href="{{assetPath('website/ar/css/font-awesome.css')}}" rel="stylesheet">
     @endif
 
 
@@ -53,13 +62,16 @@
 <body>
 <div id="app">
     <main>
+        @include('website.layouts.header')
         @yield('content')
+        @include('website.layouts.footer')
     </main>
 </div>
 
 
 
-
+<!-- //footer -->
+<a href="#" id="toTop" style="display: block;"><span id="toTopHover"></span> <span id="toTopHover" style="opacity: 1;"> </span></a>
 
 
 {{--<!-- Scripts -->
@@ -68,19 +80,15 @@
 ============================================ -->
 <!-- javascript libraries -->
 <!-- JQuery Min JS -->
-<script src="{{asset('website/js/jquery-3.4.1.min.js')}}"></script>
-<script src="{{asset('website/js/bootstrap.min.js')}}"></script>
-<script src="{{asset('website/js/popper.min.js')}}"></script>
-<script src="{{asset('website/js/jquery.counterup.js')}}"></script>
-<script src="{{asset('website/js/jquery.waypoints.min.js')}}"></script>
-<script src="{{asset('website/js/swiper.min.js')}}"></script>
-<script src="{{asset('website/js/slick.min.js')}}"></script>
-<script src="{{asset('website/js/aos.js')}}"></script>
-<script src="{{asset('website/js/fotorama.js')}}"></script>
-<script src="{{asset('website/js/lightgallery.js')}}"></script>
-<script src="{{asset('website/js/lg-thumbnail.js')}}"></script>
-<script src="{{asset('website/js/typed.min.js')}}"></script>
-<script src="{{asset('website/js/index.js')}}"></script>
+<script src="{{assetPath('website/ar/js/jquery-3.3.1.min.js')}}"></script>
+<script type="text/javascript" src="{{assetPath('website/ar/js/move-top.js')}}"></script>
+<script type="text/javascript" src="{{assetPath('website/ar/js/easing.js')}}"></script>
+<script src="{{assetPath('website/ar/js/main.js')}}"></script>
+<script src="{{assetPath('website/ar/js/bmi.js')}}"></script>
+<script src="{{assetPath('website/ar/js/owl.carousel.min.js')}}"></script>
+<script src="{{assetPath('website/ar/js/bootstrap.min.js')}}"></script>
+<script src="{{assetPath('website/ar/js/bootstrap.min.js')}}"></script>
+<script src="{{assetPath('website/ar/js/custom.js')}}"></script>
 
 @yield('customizedScript')
 

@@ -5,9 +5,10 @@
 @endsection
 {{--Drop Your Customized Scripts Codes Here--}}
 @section('customizedScript')
+    <script src="../../bower_components/ckeditor/ckeditor.js"></script>
     <script>
         //Initialize Select2 Elements
-        $('.select2').select2()
+        //$('.select2').select2()
         $(function () {
             // Replace the <textarea id="editor1"> with a CKEditor
             // instance, using default configuration.
@@ -92,8 +93,8 @@
                                 </div>
 
                                 <div class="col-lg-12">
-                                    <label for="exampleInputEmail1">Values</label>
-                                    <textarea type="text" class="form-control" name="values_en" id="" rows="6" placeholder="Enter Values of Website" >{{$about->about_en->value}}</textarea>
+                                    <label for="exampleInputEmail1">Experience</label>
+                                    <textarea type="text" class="form-control editor1" name="values_en" id="" rows="6" placeholder="Enter Values of Website" >{{$about->about_en->value}}</textarea>
                                     <p class="help-block">Edit Values of website</p>
                                 </div>
 
@@ -144,7 +145,7 @@
                                 </div>
 
                                 <div class="col-lg-12">
-                                    <label for="exampleInputEmail1">قيمنا</label>
+                                    <label for="exampleInputEmail1">خبرتنا</label>
                                     <textarea type="text" class="form-control" name="values_ar" id="" rows="6" placeholder="عدل قيم الشركة" >{{$about->about_ar->value}}</textarea>
                                     <p class="help-block">قم بتعديل قيم الشركة</p>
                                 </div>

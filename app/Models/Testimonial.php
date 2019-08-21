@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Arabic\TestimonialArabic;
+use App\Models\English\TestimonialEnglish;
 use Illuminate\Database\Eloquent\Model;
 
 class Testimonial extends Model  {
@@ -57,5 +59,11 @@ class Testimonial extends Model  {
     {
         return $this->hasOne(TestimonialEnglish::class, 'testimonial_id', 'id');
     }
+
+    public function image()
+    {
+        return $this->belongsTo(Image::class, 'image_id', 'id');
+    }
+
 
 }

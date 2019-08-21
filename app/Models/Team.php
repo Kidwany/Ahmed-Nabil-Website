@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -42,6 +42,11 @@ class Team extends Model  {
     protected $dates = ['birth_date'];
 
 
+    public function createdBy()
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id');
+    }
+
     public function team_ar()
     {
         return $this->hasOne(\App\Models\Arabic\Team::class, 'member_id', 'id');
@@ -50,6 +55,11 @@ class Team extends Model  {
     public function team_en()
     {
         return $this->hasOne(\App\Models\English\Team::class, 'member_id', 'id');
+    }
+
+    public function image()
+    {
+        return $this->belongsTo(Image::class, 'image_id', 'id');
     }
 
 }

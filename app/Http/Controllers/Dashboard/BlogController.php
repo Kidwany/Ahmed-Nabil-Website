@@ -46,7 +46,6 @@ class BlogController extends Controller
         $input = $request->all();
         $input['created_by'] = Auth::user()->id;
         $request->validate([
-            'url'               => 'bail|max:200',
             'title_en'          => 'bail|required|max:200',
             'body_en'           => 'bail|required',
             'title_ar'          => 'bail|required|max:200',
@@ -54,7 +53,6 @@ class BlogController extends Controller
             'image_id'          => 'bail|required|mimes:jpeg,jpg,png,gif',
             'alt'               => 'bail|required|max:200',
         ], [], [
-            'url'               => ' URL',
             'title_en'          => ' Title in English',
             'description_en'    => ' Body in English',
             'title_ar'          => ' Title in Arabic',
@@ -82,7 +80,6 @@ class BlogController extends Controller
 
         $blog = new Blog();
         $blog->image_id = $input['image_id'];
-        $blog->url = $input['url'];
         $blog->created_by = $input['created_by'];
         $blog->save();
 
@@ -131,7 +128,6 @@ class BlogController extends Controller
         $blog = Blog::with('blog_en', 'image')->find($id);
         //$open_graph = Blog::with('blog_en', 'image')->find($id);
         $request->validate([
-            'url'               => 'bail|max:200',
             'title_en'          => 'bail|required|max:200',
             'body_en'           => 'bail|required',
             'title_ar'          => 'bail|required|max:200',
@@ -139,7 +135,6 @@ class BlogController extends Controller
             'image_id'          => 'bail|mimes:jpeg,jpg,png,gif',
             'alt'               => 'bail|required',
         ], [], [
-            'url'               => ' URL',
             'title_en'          => ' Title in English',
             'description_en'    => ' Body in English',
             'title_ar'          => ' Title in Arabic',
@@ -166,7 +161,6 @@ class BlogController extends Controller
         }
 
 
-        $blog->url = $input['url'];
         $blog->created_by = $input['created_by'];
         $blog->save();
 

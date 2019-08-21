@@ -47,4 +47,9 @@ class Image extends Model  {
         return $this->belongsToMany(Clinic::class, 'clinic_images', 'image_id', 'clinic_id');
     }
 
+    public function album()
+    {
+        return $this->belongsTo(Album::class, 'album_id', 'id');
+    }
+
 }

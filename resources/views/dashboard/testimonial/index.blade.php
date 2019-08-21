@@ -52,6 +52,7 @@
                         <thead>
                         <tr>
                             <th>id</th>
+                            <th>Image</th>
                             <th>User Name</th>
                             <th>Testimonial</th>
                             <th>Created at</th>
@@ -62,6 +63,7 @@
                         <tfoot>
                         <tr>
                             <th>id</th>
+                            <th>Image</th>
                             <th>User Name</th>
                             <th>Testimonial</th>
                             <th>Created at</th>
@@ -74,6 +76,7 @@
                             @foreach($testimonials as $testimonial)
                                 <tr>
                                     <td>{{$testimonial->id}}</td>
+                                    <td><img src="{{$testimonial->image_id ? assetPath($testimonial->image->path) : assetPath('dashboard/img/picture.png')}}}}"></td>
                                     <td>{{$testimonial->testimonial_en->username}}</td>
                                     <td>{{str_limit($testimonial->testimonial_en->text, 20, '...') }}</td>
                                     <td>{{$testimonial->created_at ? $testimonial->created_at->diffForHumans() : ''}}</td>

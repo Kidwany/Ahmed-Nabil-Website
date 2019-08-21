@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 
 class AlbumController extends Controller
@@ -20,8 +21,22 @@ class AlbumController extends Controller
      */
     public function index()
     {
-        $albums = Album::with('album_en', 'createdBy', 'image')->get();
-        return view('dashboard.album.index', compact('albums'));
+        $albumType = Input::get('type');
+        if ($albumType == 'images')
+        {
+            $albums = Album::with('album_en', 'createdBy', 'image')->where('type', 1)->get();
+            return view('dashboard.album.index', compact('albums'));
+        }
+        elseif ($albumType == 'videos')
+        {
+            $albums = Album::with('album_en', 'createdBy', 'image')->where('type', 2)->get();
+            return view('dashboard.album.index', compact('albums'));
+        }
+        else
+        {
+            $albums = Album::with('album_en', 'createdBy', 'image')->get();
+            return view('dashboard.album.index', compact('albums'));
+        }
     }
 
     /**
@@ -86,9 +101,63 @@ class AlbumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
+    public function uploadPage($id)
+    {
+        $album = Album::with('album_en')->find($id);
+        return view('dashboard.album.upload', compact('album'));
+    }
+
+
+
+    public function upload(Request $request, $id)
+    {
+        $input = $request->all();
+        $this->validate($request,[
+            'image_id.*'       => 'mimes:jpeg,jpg,png,gif',
+            'image_id'         => 'required',
+        ], [], [
+            'image_id.*'         => 'Images',
+        ]);
+
+        try
+        {
+            if ($request->hasFile('image_id'))
+            {
+                foreach ($request->image_id as $image) {
+
+                    $name =  time() . $image->getClientOriginalName();
+
+                    $image->move('dashboardImages/album', $name);
+
+                    $path = 'dashboardImages/album/' .$name;
+
+                    $image = Image::create(['name' => $name, 'path' => $path, 'album_id' => $id]);
+
+                    $input['image_id'] = $image->id;
+
+                    //Gallery::create($input);
+                    Session::flash('create', 'Images Has Been Uploaded Successfully');
+
+                }
+            }
+        }
+        catch (\Exception $e)
+        {
+            Session::flash('exception', 'Can\'t Add Images To Album');
+            return redirect(adminUrl('gallery'));
+        }
+
+        return redirect(adminUrl('album/'.$id));
+    }
+
+
+
     public function show($id)
     {
-        //
+        $albumImages = Image::with('album')->where('album_id', $id)->get();
+        return view('dashboard.album.show', compact('albumImages'));
     }
 
     /**
@@ -119,7 +188,7 @@ class AlbumController extends Controller
             'title_en'           => 'bail|required|max:200',
             'title_ar'           => 'bail|max:200',
             'type'               => 'bail|required|int',
-            'image_id'           => 'bail|required|mimes:jpeg,jpg,png,gif',
+            'image_id'           => 'bail|mimes:jpeg,jpg,png,gif',
         ], [], [
             'title_en'           => ' Name in English',
             'title_ar'           => ' Name in Arabic',

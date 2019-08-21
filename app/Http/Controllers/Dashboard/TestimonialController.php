@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Models\Image;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -46,6 +47,7 @@ class TestimonialController extends Controller
             'username_ar'       => 'bail|required',
             'text_en'           => 'bail|required',
             'text_ar'           => 'bail|required',
+            'image_id'          => 'bail|mimes:jpeg,jpg,png,gif',
         ], [], [
             'username_en'       => 'Username in English',
             'username_ar'       => 'Username in Arabic',
@@ -53,10 +55,20 @@ class TestimonialController extends Controller
             'text_ar'           => 'Testimonial Text in Arabic',
         ]);
 
+        if ($uploadedFile = $request->file('image_id'))
+        {
+            $fileName = time() . $uploadedFile->getClientOriginalName();
+            $uploadedFile->move('dashboardImages/testimonial', $fileName);
+            $filePath = 'dashboardImages/testimonial/'.$fileName;
+            $image = Image::create(['name' => $fileName, 'path' => $filePath]);
+            $input['image_id'] = $image->id;
+        }
+
 
 
         $testimonial = new Testimonial();
         $testimonial->created_by = $input['created_by'];
+        $testimonial->image_id = $input['image_id'];
         $testimonial->save();
 
         $testimonial->testimonial_ar()->create(['testimonial_id' => $testimonial->id, 'username' => $input['username_ar'], 'text' => $input['text_ar']]);
@@ -113,7 +125,18 @@ class TestimonialController extends Controller
             'text_ar'           => 'Testimonial Text in Arabic',
         ]);
 
+        if ($uploadedFile = $request->file('image_id'))
+        {
+            $fileName = time() . $uploadedFile->getClientOriginalName();
+            $uploadedFile->move('dashboardImages/testimonial', $fileName);
+            $filePath = 'dashboardImages/testimonial/'.$fileName;
+            $image = Image::create(['name' => $fileName, 'path' => $filePath]);
+            $input['image_id'] = $image->id;
+            $testimonial->image_id = $input['image_id'];
+        }
+
         $testimonial->created_by = $input['created_by'];
+
         $testimonial->save();
 
         $testimonial->testimonial_ar()->update(['testimonial_id' => $testimonial->id, 'username' => $input['username_ar'], 'text' => $input['text_ar']]);

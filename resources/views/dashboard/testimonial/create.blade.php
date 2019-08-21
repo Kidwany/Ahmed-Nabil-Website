@@ -55,6 +55,12 @@
                                     <textarea type="text" class="form-control" name="text_en" id="editor1" placeholder="Enter Text of Testimonial">{{old('text_en')}}</textarea>
                                     <p class="help-block">Text of Testimonial</p>
                                 </div>
+
+                                <div class="col-lg-12">
+                                    <label for="exampleInputEmail1"> Image</label>
+                                    <input type="file" class="form-control" name="image_id" id="exampleInputEmail1" placeholder="Enter button text">
+                                    <p class="help-block"> Upload Testimonial </p>
+                                </div>
                             </div>
                         </div>
                         <div class="box-footer">

@@ -28,7 +28,7 @@
 
     <section class="content">
         @include('dashboard.layouts.messages')
-        <form role="form" action="{{route('album.update', $client->id)}}" enctype="multipart/form-data" method="post">
+        <form role="form" action="{{route('album.update', $album->id)}}" enctype="multipart/form-data" method="post">
             @csrf
             @method('patch')
             <div class="row">
@@ -46,7 +46,7 @@
                                 <div class="col-lg-12">
                                     <label for="exampleInputEmail1">Album Name</label>
                                     <input type="text" class="form-control" name="title_en" id="exampleInputEmail1" placeholder="Enter Client Name" value="{{$album->album_en->title}}">
-                                    <p class="help-block">Enter Name of Client</p>
+                                    <p class="help-block">Enter Name of Album</p>
                                 </div>
 
                                 <div class="col-lg-12">

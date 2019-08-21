@@ -82,7 +82,21 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{adminUrl('album/create')}}"><i class="fa fa-upload"></i> Add Album</a></li>
-                    <li><a href="{{adminUrl('album')}}"><i class="fa fa-edit"></i> Show / Edit Album</a></li>
+                    <li><a href="{{adminUrl('album')}}"><i class="fa fa-edit"></i> Show All Albums</a></li>
+                    <li><a href="{{adminUrl('album?type=videos')}}"><i class="fa fa-video-camera"></i> Show Videos Albums</a></li>
+                    <li><a href="{{adminUrl('album?type=images')}}"><i class="fa fa-image"></i> Show Images Albums</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-newspaper-o"></i>
+                    <span>Blog</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{adminUrl('blog/create')}}"><i class="fa fa-plus"></i> Add Blog</a></li>
+                    <li><a href="{{adminUrl('blog')}}"><i class="fa fa-edit"></i> Show / Edit Slide</a></li>
                 </ul>
             </li>
 
@@ -95,6 +109,31 @@
                 <ul class="treeview-menu">
                     <li><a href="{{adminUrl('video/create')}}"><i class="fa fa-upload"></i> Add Video</a></li>
                     <li><a href="{{adminUrl('video')}}"><i class="fa fa-edit"></i> Show / Edit Video</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-group"></i>
+                    <span>Team</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{adminUrl('team/create')}}"><i class="fa fa-plus"></i> Add Team Member</a></li>
+                    <li><a href="{{adminUrl('team')}}"><i class="fa fa-edit"></i> Show / Edit Members</a></li>
+                </ul>
+            </li>
+
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-quote-left"></i>
+                    <span>Testimonial</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{adminUrl('testimonial/create')}}"><i class="fa fa-plus"></i> Add Testimonial</a></li>
+                    <li><a href="{{adminUrl('testimonial')}}"><i class="fa fa-edit"></i> Show / Edit Testimonial</a></li>
                 </ul>
             </li>
 

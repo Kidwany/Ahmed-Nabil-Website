@@ -48,7 +48,7 @@ if (!function_exists('currentLang'))
 {
     function currentLang()
     {
-       return 'ar';
+        return app()->getLocale();
     }
 }
 

@@ -69,7 +69,7 @@
 
                             <div class="col-lg-12">
                                 <label for="exampleInputEmail1"> Video Url</label>
-                                <input type="file" class="form-control" name="video_id" id="exampleInputEmail1" placeholder="Enter Video Url">
+                                <input type="url" class="form-control" name="video_id" id="exampleInputEmail1" placeholder="Enter Video Url">
                                 <p class="help-block"> Enter Youtube Video Embed Url </p>
                             </div>
 
